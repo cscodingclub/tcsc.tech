@@ -1,0 +1,34 @@
+.cure{
+    position: relative;
+}
+.custom-shape-divider-top-1719293774 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-top-1719293774 svg {
+    position: relative;
+    display: block;
+    width: calc(134% + 1.3px);
+    height: 107px;
+}
+
+.custom-shape-divider-top-1719293774 .shape-fill {
+    fill: #FFFFFF;
+}
+
+
+@media (max-width:992px) {
+    .custom-shape-divider-top-1719293774 svg{
+        height: 78px;
+    }
+}
+@media (max-width:462px){
+    .custom-shape-divider-top-1719293774 svg{
+        height: 40px;
+    }
+}
