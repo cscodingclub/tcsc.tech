@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeCraft Innovation Hub</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+    <style>
+    body {
+        cursor: url('/cursor2.svg') 16 16, auto;
+    }
+
+/* Cursor on hover */
+    button:hover { /* Apply hover to specific elements */
+        cursor: url('/cursor3.svg') 16 16, auto;
+    }       
+
+    a:hover {
+
+        cursor: url('/cursor-hand.svg') 16 16, auto;
+    }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+            height: 100vh;
+        }
+
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 20px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 1000;
+        background: rgba(10, 10, 10, 0.8);
+        backdrop-filter: blur(10px);
+        transform: translateY(-100%); /* For animation */
+    }
+
+    .navbar-brand {
+        font-size: 24px;
+        font-weight: bold;
+        background: linear-gradient(45deg, #4CAF50, #2196F3);
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .nav-links a {
+        color: white;
+        text-decoration: none;
+        margin: 0 20px;
+        position: relative;
+        opacity: 0; /* For animation */
+    }
+
+    .join-btn {
+        background: linear-gradient(45deg, #4CAF50, #2196F3);
+        border: none;
+        padding: 10px 20px;
+        border-radius: 20px;
+        color: white;
+        cursor: pointer;
+        transform: scale(0); /* For animation */
+    }
+
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #4CAF50;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .cursor-follower {
+            width: 40px;
+            height: 40px;
+            background: rgba(76, 175, 80, 0.3);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+        }
+
+        .loader {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            background: #0a0a0a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .loader svg {
+            width: 100px;
+            height: 100px;
+        }
+
+        .main-container {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .scroll-container {
+            position: absolute;
+            width: 100%;
+            will-change: transform;
+        }
+
+        section {
+            min-height: 100vh;
+            padding: 100px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 8rem;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 20px;
+            transform: scale(0);
+            background: linear-gradient(45deg, #4CAF50, #2196F3);
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .split-text {
+            opacity: 0;
+        }
+
+        .geometric-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(76, 175, 80, 0.1);
+            filter: blur(50px);
+        }
+
+        .projects {
+            display: flex;
+            gap: 50px;
+            padding: 150px 10vw;
+        }
+
+        .project-card {
+            flex: 1;
+            min-height: 600px;
+            background: #1a1a1a;
+            border-radius: 20px;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+            transform: translateY(100px);
+            opacity: 0;
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .magnetic-button {
+            display: inline-block;
+            padding: 20px 40px;
+            background: linear-gradient(45deg, #4CAF50, #2196F3);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-top: 30px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .magnetic-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.1);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .magnetic-button:hover::before {
+            transform: translateX(0);
+        }
+
+        .parallax-section {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .parallax-layer {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .code-rain {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            opacity: 0.3;
+        }
+
+        .code-character {
+            position: absolute;
+            color: #4CAF50;
+            font-family: monospace;
+            font-size: 20px;
+            animation: fall linear infinite;
+        }
+
+        .team-section {
+            padding: 100px 5vw;
+            background: linear-gradient(to bottom, #0a0a0a, #1a1a1a);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .team-card {
+            position: relative;
+            height: 350px;
+            background: #222;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .team-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .team-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.5s;
+        }
+
+        .team-card:hover .team-info {
+            transform: translateY(0);
+        }
+
+        .team-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 100px auto;
+            padding: 40px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background: #4CAF50;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            width: 50%;
+            padding: 20px 40px;
+            position: relative;
+            opacity: 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #4CAF50;
+            border-radius: 50%;
+            top: 50%;
+            right: -10px;
+            transform: translateY(-50%);
+        }
+
+        .timeline-item:nth-child(even) {
+            margin-left: 50%;
+        }
+
+        .timeline-item:nth-child(even)::before {
+            left: -10px;
+        }
+
+        .tech-stack {
+            padding: 100px 5vw;
+            background: #0a0a0a;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .tech-item {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .tech-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .success-stories {
+            padding: 100px 5vw;
+            background: linear-gradient(to top, #0a0a0a, #1a1a1a);
+        }
+
+        .story-slider {
+            position: relative;
+            height: 400px;
+            margin-top: 50px;
+        }
+
+        .story-card {
+            position: absolute;
+            width: 80%;
+            max-width: 800px;
+            background: rgba(255,255,255,0.05);
+            padding: 40px;
+            border-radius: 20px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+        }
+
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            background: linear-gradient(45deg, #4CAF50, #2196F3);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .contact {
+            padding: 100px 5vw;
+            background: #0a0a0a;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 50px auto;
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+
+        .form-label {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255,255,255,0.5);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .form-input:focus + .form-label,
+        .form-input:not(:placeholder-shown) + .form-label {
+            top: 0;
+            font-size: 12px;
+            background: #0a0a0a;
+            padding: 0 5px;
+            color: #4CAF50;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, #4CAF50, #2196F3);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <nav class="navbar">
+        <div class="navbar-brand">CodeCraft</div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#events">Events</a>
+            <a href="#contact">Contact</a>
+            <button class="join-btn">Join Us</button>
+        </div>
+    </nav>
+
+    <div class="loader">
+        <svg viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="40" stroke="#4CAF50" stroke-width="8" fill="none"/>
+        </svg>
+    </div>
+
+    <div class="main-container">
+        <div class="scroll-container">
+            <section class="hero">
+                <div class="geometric-bg">
+                    <div class="shape" style="width: 300px; height: 300px; top: 20%; left: 20%"></div>
+                    <div class="shape" style="width: 200px; height: 200px; top: 60%; right: 30%"></div>
+                    <div class="shape" style="width: 400px; height: 400px; bottom: 10%; left: 50%"></div>
+                </div>
+                <div class="hero-content">
+                    <h1>CODEING<br>CLUB TSCS</h1>
+                    <div class="split-text">Innovation Hub for Future Developers</div>
+                    <div class="magnetic-button">Join the Revolution</div>
+                </div>
+            </section>
+
+            <section class="parallax-section">
+                <div class="code-rain" id="codeRain"></div>
+                <div class="parallax-layer" data-speed="0.2">
+                    <img src="/api/placeholder/800/600" alt="Layer 1">
+                </div>
+                <div class="parallax-layer" data-speed="0.4">
+                    <img src="/api/placeholder/700/500" alt="Layer 2">
+                </div>
+                <div class="parallax-layer" data-speed="0.6">
+                    <h2 style="font-size: 5rem; text-align: center;">Where Code<br>Comes to Life</h2>
+                </div>
+            </section>
+
+            <section class="projects">
+                <div class="project-card">
+                    <img src="/api/placeholder/400/300" alt="Project 1">
+                    <h3>AI Innovation Lab</h3>
+                    <p>Pushing the boundaries of artificial intelligence with cutting-edge projects.</p>
+                </div>
+                <div class="project-card">
+                    <img src="/api/placeholder/400/300" alt="Project 2">
+                    <h3>Virtual Reality Hub</h3>
+                    <p>Creating immersive experiences that blend reality with digital innovation.</p>
+                </div>
+                <div class="project-card">
+                    <img src="/api/placeholder/400/300" alt="Project 3">
+                    <h3>Quantum Computing</h3>
+                    <p>Exploring the future of computation with quantum algorithms.</p>
+                </div>
+            </section>
+            
+        <!-- Team Section -->
+        <section class="team-section">
+            <!-- Team cards will go here -->
+        </section>
+
+        <!-- Events Timeline -->
+        <section class="events-timeline">
+            <!-- Timeline items will go here -->
+        </section>
+
+        <!-- Tech Stack Showcase -->
+        <section class="tech-stack">
+            <!-- Technology icons will go here -->
+        </section>
+
+        <!-- Success Stories -->
+        <section class="success-stories">
+            <!-- Success story cards will go here -->
+        </section>
+
+        <!-- Contact Form -->
+    <section class="contact" id="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-form">
+            <div class="form-group">
+                <input type="text" class="form-input" placeholder=" ">
+                <label class="form-label">Name</label>
+            </div>
+            <div class="form-group">
+                <input type="email" class="form-input" placeholder=" ">
+                <label class="form-label">Email</label>
+            </div>
+            <div class="form-group">
+                <textarea class="form-input" rows="5" placeholder=" "></textarea>
+                <label class="form-label">Message</label>
+            </div>
+            <button class="submit-btn">Send Message</button>
+        </div>
+    </section>
+        </div>
+    </div>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+        // Custom smooth scrolling
+        let scroll = {
+            current: 0,
+            target: 0,
+            ease: 0.05
+        };
+
+        let container = document.querySelector('.scroll-container');
+        let height;
+
+        function setHeight() {
+            height = container.getBoundingClientRect().height;
+            document.body.style.height = `${height}px`;
+        }
+        setHeight();
+
+        // Create Matrix-style code rain
+        function createCodeRain() {
+            const codeRain = document.getElementById('codeRain');
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789<>/?{}[]';
+            
+            for(let i = 0; i < 100; i++) {
+                const char = document.createElement('div');
+                char.className = 'code-character';
+                char.style.left = `${Math.random() * 100}%`;
+                char.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                char.style.animationDelay = `${Math.random() * 2}s`;
+                char.textContent = characters[Math.floor(Math.random() * characters.length)];
+                codeRain.appendChild(char);
+            }
+        }
+        createCodeRain();
+
+        // Custom cursor
+        let cursor = document.querySelector('.cursor');
+        let cursorFollower = document.querySelector('.cursor-follower');
+        
+        document.addEventListener('mousemove', (e) => {
+            gsap.to(cursor, {
+                x: e.clientX - 10,
+                y: e.clientY - 10,
+                duration: 0.1
+            });
+            gsap.to(cursorFollower, {
+                x: e.clientX - 20,
+                y: e.clientY - 20,
+                duration: 0.3
+            });
+        });
+
+        // Loading animation
+        gsap.to('.loader circle', {
+            strokeDasharray: 251.2,
+            strokeDashoffset: 0,
+            duration: 1.5,
+            ease: "power2.inOut",
+            onComplete: () => {
+                gsap.to('.loader', {
+                    yPercent: -100,
+                    duration: 0.8,
+                    ease: "power2.inOut"
+                });
+            }
+        });
+
+        // Hero animations
+        gsap.to('.hero h1', {
+            scale: 1,
+            duration: 1.5,
+            ease: "elastic.out(1, 0.3)",
+            delay: 2
+        });
+
+        gsap.to('.split-text', {
+            opacity: 1,
+            duration: 1,
+            delay: 2.5,
+            stagger: 0.1
+        });
+
+        // Animate geometric shapes
+        gsap.to('.shape', {
+            scale: 1.5,
+            duration: 2,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+            stagger: 0.2
+        });
+
+        // Project cards animation
+        gsap.to('.project-card', {
+            scrollTrigger: {
+                trigger: '.projects',
+                start: "top center",
+                end: "bottom center",
+                toggleActions: "play none none reverse"
+            },
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            stagger: 0.2,
+            ease: "power4.out"
+        });
+
+
+        // Navbar animation
+        gsap.to('.navbar', {
+            y: 0,
+            duration: 1,
+            delay: 2.5,
+            ease: "power4.out"
+        });
+
+        gsap.to('.nav-links a', {
+            opacity: 1,
+            duration: 1,
+            delay: 3,
+            stagger: 0.1,
+            ease: "power2.out"
+        });
+
+        gsap.to('.join-btn', {
+            scale: 1,
+            duration: 1,
+            delay: 3.5,
+            ease: "elastic.out(1, 0.3)"
+        });
+
+        // Add scroll triggers for new sections
+        gsap.utils.toArray(['team-section', 'events-timeline', 'tech-stack', 'success-stories', 'contact']).forEach(section => {
+            gsap.from(`.${section}`, {
+                scrollTrigger: {
+                    trigger: `.${section}`,
+                    start: "top center",
+                    end: "bottom center",
+                    toggleActions: "play none none reverse"
+                },
+                y: 100,
+                opacity: 0,
+                duration: 1,
+                ease: "power4.out"
+            });
+        });
+
+        // Parallax effect
+        document.querySelectorAll('.parallax-layer').forEach(layer => {
+            const speed = layer.getAttribute('data-speed');
+            gsap.to(layer, {
+                scrollTrigger: {
+                    trigger: '.parallax-section',
+                    start: 'top top',
+                    end: 'bottom top',
+                    scrub: true
+                },
+                y: (i, target) => -ScrollTrigger.maxScroll(window) * speed,
+                ease: "none"
+            });
+        });
+
+        // Magnetic button effect
+        document.querySelector('.magnetic-button').addEventListener('mousemove', (e) => {
+            const bound = e.target.getBoundingClientRect();
+            const x = e.clientX - bound.left - bound.width / 2;
+            const y = e.clientY - bound.top - bound.height / 2;
+            
+            gsap.to(e.target, {
+                x: x * 0.3,
+                y: y * 0.3,
+                duration: 0.6,
+                ease: "power2.out"
+            });
+        });
+
+        document.querySelector('.magnetic-button').addEventListener('mouseleave', (e) => {
+            gsap.to(e.target, {
+                x: 0,
+                y: 0,
+                duration: 0.6,
+                ease: "elastic.out(1, 0.3)"
+            });
+        });
+
+        // Smooth scroll animation
+        function updateScroll() {
+            scroll.target = window.scrollY;
+            scroll.current = gsap.utils.interpolate(
+                scroll.current,
+                scroll.target,
+                scroll.ease
+            );
+
+            gsap.set('.scroll-container', {
+                y: -scroll.current
+            });
+
+            requestAnimationFrame(updateScroll);
+        }
+        updateScroll();
+
+        window.addEventListener('resize', setHeight);
+    </script>
+</body>
+</html>
