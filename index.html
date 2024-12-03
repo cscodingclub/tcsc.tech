@@ -173,15 +173,14 @@
         filter: blur(50px);
       }
 
-      .projects {
-        display: flex;
+      .departments {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         gap: 50px;
         padding: 150px 10vw;
       }
 
-      .project-card {
-        flex: 1;
-        min-height: 600px;
+      .departments-cards {
         background: #1a1a1a;
         border-radius: 20px;
         padding: 30px;
@@ -191,7 +190,7 @@
         opacity: 0;
       }
 
-      .project-card img {
+      .departments-cards img {
         width: 100%;
         height: 300px;
         object-fit: cover;
@@ -356,6 +355,10 @@
         left: -10px;
       }
 
+      h3 {
+        margin-bottom: 20px;
+      }
+
       .tech-stack {
         padding: 100px 5vw;
         background: #0a0a0a;
@@ -497,7 +500,7 @@
       <div class="nav-links">
         <a href="#home">Home</a>
         <a href="#about">About</a>
-        <!-- <a href="#projects">Member</a> -->
+        <a href="#departments">Gallery</a>
         <a href="#events">Events</a>
         <a href="#contact">Contact</a>
         <button class="join-btn">Join Us</button>
@@ -535,48 +538,81 @@
             ></div>
           </div>
           <div class="hero-content">
-            <h1>CODEING<br />CLUB TSCS</h1>
-            <div class="split-text">Innovation Hub for Future Developers</div>
-            <div class="magnetic-button">Join the Revolution</div>
+            <h1>CODING<br />CLUB TSCS</h1>
+            <div class="split-text">Department of BSC Computer Science</div>
+            <div class="magnetic-button">Partner with Us for Your Projects</div>
           </div>
         </section>
 
         <section class="parallax-section">
           <div class="code-rain" id="codeRain"></div>
-          <div class="parallax-layer" data-speed="0.2">
-            <img src="/api/placeholder/800/600" alt="Layer 1" />
-          </div>
           <div class="parallax-layer" data-speed="0.4">
-            <img src="/api/placeholder/700/500" alt="Layer 2" />
-          </div>
-          <div class="parallax-layer" data-speed="0.6">
             <h2 style="font-size: 5rem; text-align: center">
               Where Code<br />Comes to Life
             </h2>
           </div>
         </section>
 
-        <section class="projects">
-          <div class="project-card">
+        <section class="departments">
+          <div class="departments-cards">
             <img src="/api/placeholder/400/300" alt="Project 1" />
-            <h3>AI Innovation Lab</h3>
+            <h3>FRONT-END</h3>
             <p>
-              Pushing the boundaries of artificial intelligence with
-              cutting-edge projects.
+              The Front-End department focuses on designing and building the
+              user-facing aspects of web and mobile applications. We use
+              cutting-edge technologies like HTML, CSS, and JavaScript to create
+              responsive and interactive user interfaces.
             </p>
           </div>
-          <div class="project-card">
+          <div class="departments-cards">
             <img src="/api/placeholder/400/300" alt="Project 2" />
-            <h3>Virtual Reality Hub</h3>
+            <h3>BACK-END</h3>
             <p>
-              Creating immersive experiences that blend reality with digital
-              innovation.
+              Our Back-End team specializes in server-side development, working
+              with databases, APIs, and server architecture to ensure the smooth
+              operation of applications. Technologies like Node.js, Python, and
+              Ruby on Rails are commonly used here.
             </p>
           </div>
-          <div class="project-card">
+          <div class="departments-cards">
             <img src="/api/placeholder/400/300" alt="Project 3" />
-            <h3>Quantum Computing</h3>
-            <p>Exploring the future of computation with quantum algorithms.</p>
+            <h3>DATA SCIENCE</h3>
+            <p>
+              The Data Science team works with large datasets to extract
+              meaningful insights, predict trends, and support decision-making.
+              We use advanced analytics, machine learning, and statistical
+              methods to transform data into actionable knowledge.
+            </p>
+          </div>
+          <div class="departments-cards">
+            <img src="/api/placeholder/400/300" alt="Project 4" />
+            <h3>LINUX</h3>
+            <p>
+              The Linux department manages and supports server infrastructures,
+              ensuring the security, stability, and scalability of systems
+              running on Linux-based operating systems. We optimize servers and
+              manage system updates and performance monitoring.
+            </p>
+          </div>
+          <div class="departments-cards">
+            <img src="/api/placeholder/400/300" alt="Project 5" />
+            <h3>UI/UX</h3>
+            <p>
+              The UI/UX team works on enhancing the overall user experience by
+              focusing on design principles, user behavior, and usability. We
+              ensure that our applications are not only visually appealing but
+              also user-friendly and intuitive to navigate.
+            </p>
+          </div>
+          <div class="departments-cards">
+            <img src="/api/placeholder/400/300" alt="Project 6" />
+            <h3>COMMUNICATION</h3>
+            <p>
+              The Communication department is responsible for managing internal
+              and external communications. We handle messaging, branding, media
+              relations, and content creation to ensure that the company's
+              mission, values, and news are communicated effectively.
+            </p>
           </div>
         </section>
 
@@ -680,7 +716,7 @@
       gsap.to(".loader circle", {
         strokeDasharray: 251.2,
         strokeDashoffset: 0,
-        duration: 2.5,
+        duration: 1.5,
         ease: "power2.inOut",
         onComplete: () => {
           gsap.to(".loader", {
@@ -717,9 +753,9 @@
       });
 
       // Project cards animation
-      gsap.to(".project-card", {
+      gsap.to(".departments-cards", {
         scrollTrigger: {
-          trigger: ".projects",
+          trigger: ".departments",
           start: "top center",
           end: "bottom center",
           toggleActions: "play none none reverse",
