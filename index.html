@@ -299,7 +299,7 @@
       .frontend-list {
         padding: 15px;
         border-radius: 30px;
-        display: flex !important;
+        display: flex;
         row-gap: 15px;
         flex-wrap: wrap !important;
         justify-content: center;
@@ -308,7 +308,7 @@
       .backend-list {
         padding: 15px;
         border-radius: 30px;
-        display: flex !important;
+        display: flex;
         row-gap: 15px;
         flex-wrap: wrap !important;
         justify-content: center;
@@ -317,7 +317,7 @@
       .datascience-list {
         padding: 15px;
         border-radius: 30px;
-        display: flex !important;
+        display: flex;
         row-gap: 15px;
         flex-wrap: wrap !important;
         justify-content: center;
@@ -326,7 +326,7 @@
       .ui-ux {
         padding: 15px;
         border-radius: 30px;
-        display: flex !important;
+        display: flex;
         row-gap: 15px;
         flex-wrap: wrap !important;
         justify-content: center;
@@ -336,7 +336,7 @@
         padding: 15px;
         background: black;
         border-radius: 30px;
-        display: flex !important;
+        display: flex;
         row-gap: 15px;
         flex-wrap: wrap !important;
         justify-content: center;
@@ -652,13 +652,21 @@
             <h2 class="our-technology">OUR TECHNOLOGY.</h2>
             <div class="tech-grandparent">
               <div class="tech-parent">
-                <span class="span">FRONTEND</span>
-                <span class="span">BACKEND</span>
-                <span class="span">DATA SCIENCE</span>
-                <span class="span">LINUX</span>
-                <span>UI / UX</span>
+                <span class="span" id="frontend">FRONTEND</span>
+                <span class="span" id="backend">BACKEND</span>
+                <span class="span" id="datascience">DATA SCIENCE</span>
+                <span class="span" id="linux">LINUX</span>
+                <span class="span" id="uiux">UI / UX</span>
               </div>
               <div class="frontend-list">
+                <div class="icon-box">ICON 0</div>
+                <div class="icon-box">ICON 1</div>
+                <div class="icon-box">ICON 1</div>
+                <div class="icon-box">ICON 1</div>
+                <div class="icon-box">ICON 1</div>
+                <div class="icon-box">ICON 1</div>
+              </div>
+              <div class="backend-list" style="display: none">
                 <div class="icon-box">ICON 1</div>
                 <div class="icon-box">ICON 1</div>
                 <div class="icon-box">ICON 1</div>
@@ -666,32 +674,24 @@
                 <div class="icon-box">ICON 1</div>
                 <div class="icon-box">ICON 1</div>
               </div>
-              <div class="backend-list">
-                <div class="icon-box">ICON 1</div>
-                <div class="icon-box">ICON 1</div>
-                <div class="icon-box">ICON 1</div>
-                <div class="icon-box">ICON 1</div>
-                <div class="icon-box">ICON 1</div>
-                <div class="icon-box">ICON 1</div>
-              </div>
-              <div class="datascience-list">
-                <div class="icon-box">ICON 1</div>
+              <div class="datascience-list" style="display: none">
+                <div class="icon-box">ICON 2</div>
                 <div class="icon-box">ICON 1</div>
                 <div class="icon-box">ICON 1</div>
                 <div class="icon-box">ICON 1</div>
                 <div class="icon-box">ICON 1</div>
                 <div class="icon-box">ICON 1</div>
               </div>
-              <div class="linux-list">
-                <div class="icon-box">ICON 1</div>
+              <div class="linux-list" style="display: none">
+                <div class="icon-box">ICON 3</div>
                 <div class="icon-box">ICON 1</div>
                 <div class="icon-box">ICON 1</div>
                 <div class="icon-box">ICON 1</div>
                 <div class="icon-box">ICON 1</div>
                 <div class="icon-box">ICON 1</div>
               </div>
-              <div class="ui-ux">
-                <div class="icon-box">ICON 1</div>
+              <div class="ui-ux" style="display: none">
+                <div class="icon-box">ICON 4</div>
                 <div class="icon-box">ICON 1</div>
                 <div class="icon-box">ICON 1</div>
                 <div class="icon-box">ICON 1</div>
@@ -770,7 +770,7 @@
         </section>
       </div>
     </div>
-
+    <script src="script-tech.js"></script>
     <script>
       gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
