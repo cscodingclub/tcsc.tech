@@ -238,14 +238,115 @@
       }
 
       .parallax-layer {
-        position: absolute;
         width: 100%;
         height: 100%;
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
       }
 
+      .best-feature {
+        font-family: Barlow Condensed, sans-serif;
+        font-weight: 400;
+        font-size: 17px;
+        letter-spacing: 14px;
+        margin-bottom: 5px;
+        line-height: 1.5;
+      }
+
+      .our-technology {
+        font-family: inherit;
+        font-size: 5rem;
+      }
+      .tech-grandparent {
+        position: relative;
+        width: 100%;
+        min-height: 1px;
+        padding-right: 15px;
+        padding-left: 15px;
+      }
+      .tech-parent {
+        padding: 15px;
+        background: black;
+        border-radius: 30px;
+        display: flex !important;
+        row-gap: 15px;
+        flex-wrap: wrap !important;
+        justify-content: center;
+      }
+
+      .tech-parent span {
+        font-weight: 600;
+        font-size: 13px;
+        letter-spacing: 1px;
+        margin: 0 20px !important;
+        cursor: pointer;
+        position: relative;
+      }
+
+      .tech-parent .span::after {
+        content: "";
+        width: 7px;
+        height: 7px;
+        background: red;
+        border-radius: 50%;
+        position: absolute;
+        right: -24px;
+        top: 40%;
+      }
+
+      .frontend-list {
+        padding: 15px;
+        border-radius: 30px;
+        display: flex !important;
+        row-gap: 15px;
+        flex-wrap: wrap !important;
+        justify-content: center;
+      }
+
+      .backend-list {
+        padding: 15px;
+        border-radius: 30px;
+        display: flex !important;
+        row-gap: 15px;
+        flex-wrap: wrap !important;
+        justify-content: center;
+      }
+
+      .datascience-list {
+        padding: 15px;
+        border-radius: 30px;
+        display: flex !important;
+        row-gap: 15px;
+        flex-wrap: wrap !important;
+        justify-content: center;
+      }
+
+      .ui-ux {
+        padding: 15px;
+        border-radius: 30px;
+        display: flex !important;
+        row-gap: 15px;
+        flex-wrap: wrap !important;
+        justify-content: center;
+      }
+
+      .linux-list {
+        padding: 15px;
+        background: black;
+        border-radius: 30px;
+        display: flex !important;
+        row-gap: 15px;
+        flex-wrap: wrap !important;
+        justify-content: center;
+      }
+
+      .icon-box {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        max-width: 16.666667%;
+      }
       .code-rain {
         position: absolute;
         width: 100%;
@@ -547,9 +648,57 @@
         <section class="parallax-section">
           <div class="code-rain" id="codeRain"></div>
           <div class="parallax-layer" data-speed="0.4">
-            <h2 style="font-size: 5rem; text-align: center">
-              Where Code<br />Comes to Life
-            </h2>
+            <p class="best-feature">BEST FEATURE</p>
+            <h2 class="our-technology">OUR TECHNOLOGY.</h2>
+            <div class="tech-grandparent">
+              <div class="tech-parent">
+                <span class="span">FRONTEND</span>
+                <span class="span">BACKEND</span>
+                <span class="span">DATA SCIENCE</span>
+                <span class="span">LINUX</span>
+                <span>UI / UX</span>
+              </div>
+              <div class="frontend-list">
+                <div class="icon-box">ICON 1</div>
+                <div class="icon-box">ICON 1</div>
+                <div class="icon-box">ICON 1</div>
+                <div class="icon-box">ICON 1</div>
+                <div class="icon-box">ICON 1</div>
+                <div class="icon-box">ICON 1</div>
+              </div>
+              <div class="backend-list">
+                <div class="icon-box">ICON 1</div>
+                <div class="icon-box">ICON 1</div>
+                <div class="icon-box">ICON 1</div>
+                <div class="icon-box">ICON 1</div>
+                <div class="icon-box">ICON 1</div>
+                <div class="icon-box">ICON 1</div>
+              </div>
+              <div class="datascience-list">
+                <div class="icon-box">ICON 1</div>
+                <div class="icon-box">ICON 1</div>
+                <div class="icon-box">ICON 1</div>
+                <div class="icon-box">ICON 1</div>
+                <div class="icon-box">ICON 1</div>
+                <div class="icon-box">ICON 1</div>
+              </div>
+              <div class="linux-list">
+                <div class="icon-box">ICON 1</div>
+                <div class="icon-box">ICON 1</div>
+                <div class="icon-box">ICON 1</div>
+                <div class="icon-box">ICON 1</div>
+                <div class="icon-box">ICON 1</div>
+                <div class="icon-box">ICON 1</div>
+              </div>
+              <div class="ui-ux">
+                <div class="icon-box">ICON 1</div>
+                <div class="icon-box">ICON 1</div>
+                <div class="icon-box">ICON 1</div>
+                <div class="icon-box">ICON 1</div>
+                <div class="icon-box">ICON 1</div>
+                <div class="icon-box">ICON 1</div>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -557,62 +706,26 @@
           <div class="departments-cards">
             <img src="/api/placeholder/400/300" alt="Project 1" />
             <h3>FRONT-END</h3>
-            <p>
-              The Front-End department focuses on designing and building the
-              user-facing aspects of web and mobile applications. We use
-              cutting-edge technologies like HTML, CSS, and JavaScript to create
-              responsive and interactive user interfaces.
-            </p>
           </div>
           <div class="departments-cards">
             <img src="/api/placeholder/400/300" alt="Project 2" />
             <h3>BACK-END</h3>
-            <p>
-              Our Back-End team specializes in server-side development, working
-              with databases, APIs, and server architecture to ensure the smooth
-              operation of applications. Technologies like Node.js, Python, and
-              Ruby on Rails are commonly used here.
-            </p>
           </div>
           <div class="departments-cards">
             <img src="/api/placeholder/400/300" alt="Project 3" />
             <h3>DATA SCIENCE</h3>
-            <p>
-              The Data Science team works with large datasets to extract
-              meaningful insights, predict trends, and support decision-making.
-              We use advanced analytics, machine learning, and statistical
-              methods to transform data into actionable knowledge.
-            </p>
           </div>
           <div class="departments-cards">
             <img src="/api/placeholder/400/300" alt="Project 4" />
             <h3>LINUX</h3>
-            <p>
-              The Linux department manages and supports server infrastructures,
-              ensuring the security, stability, and scalability of systems
-              running on Linux-based operating systems. We optimize servers and
-              manage system updates and performance monitoring.
-            </p>
           </div>
           <div class="departments-cards">
             <img src="/api/placeholder/400/300" alt="Project 5" />
             <h3>UI/UX</h3>
-            <p>
-              The UI/UX team works on enhancing the overall user experience by
-              focusing on design principles, user behavior, and usability. We
-              ensure that our applications are not only visually appealing but
-              also user-friendly and intuitive to navigate.
-            </p>
           </div>
           <div class="departments-cards">
             <img src="/api/placeholder/400/300" alt="Project 6" />
             <h3>COMMUNICATION</h3>
-            <p>
-              The Communication department is responsible for managing internal
-              and external communications. We handle messaging, branding, media
-              relations, and content creation to ensure that the company's
-              mission, values, and news are communicated effectively.
-            </p>
           </div>
         </section>
 
