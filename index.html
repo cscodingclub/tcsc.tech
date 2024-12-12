@@ -235,44 +235,52 @@
         align-items: center;
         justify-content: center;
         position: relative;
+        overflow: hidden;
       }
 
       .parallax-layer {
+        position: absolute;
         width: 100%;
         height: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        text-align: center;
+        color: white;
+        z-index: 1;
       }
 
+      .parallax-layer[data-speed="0.4"] {
+        transform: translateY(0); /* Default position */
+      }
       .best-feature {
-        font-family: Barlow Condensed, sans-serif;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.5rem;
         font-weight: 400;
-        font-size: 17px;
-        letter-spacing: 14px;
-        margin-bottom: 5px;
-        line-height: 1.5;
+        letter-spacing: 2px;
+        margin-bottom: 10px;
+        text-transform: uppercase;
       }
 
       .our-technology {
-        font-family: inherit;
         font-size: 5rem;
+        font-weight: bold;
+        margin-bottom: 20px;
+        background: linear-gradient(45deg, #4caf50, #2196f3);
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
       }
+
       .tech-grandparent {
-        position: relative;
         width: 100%;
-        min-height: 1px;
-        padding-right: 15px;
-        padding-left: 15px;
+        max-width: 1200px;
+        padding: 20px;
       }
       .tech-parent {
-        padding: 15px;
-        background: black;
-        border-radius: 30px;
-        display: flex !important;
-        row-gap: 15px;
-        flex-wrap: wrap !important;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
         justify-content: center;
       }
 
@@ -343,10 +351,38 @@
       }
 
       .icon-box {
-        padding-top: 20px;
-        padding-bottom: 20px;
-        max-width: 16.666667%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        max-width: 200px; /* Adjust as per requirement */
+        margin: 10px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+        text-align: center;
+        transition: transform 0.3s, background 0.3s;
+        cursor: pointer;
       }
+
+      .icon-box img {
+        width: 60px; /* Adjust icon size */
+        height: 60px;
+        margin-bottom: 10px; /* Space between the icon and text */
+      }
+
+      .icon-box span {
+        font-size: 1rem; /* Adjust text size */
+        font-weight: 600;
+        color: white;
+        text-align: left;
+      }
+
+      .icon-box:hover {
+        transform: translateY(-5px); /* Add hover effect for interactivity */
+        background: rgba(255, 255, 255, 0.1); /* Highlight effect */
+      }
+
       .code-rain {
         position: absolute;
         width: 100%;
@@ -656,47 +692,141 @@
                 <span class="span" id="backend">BACKEND</span>
                 <span class="span" id="datascience">DATA SCIENCE</span>
                 <span class="span" id="linux">LINUX</span>
-                <span class="span" id="uiux">UI / UX</span>
+                <span id="uiux">UI / UX</span>
               </div>
               <div class="frontend-list">
-                <div class="icon-box">ICON 0</div>
-                <div class="icon-box">ICON 1</div>
-                <div class="icon-box">ICON 1</div>
-                <div class="icon-box">ICON 1</div>
-                <div class="icon-box">ICON 1</div>
-                <div class="icon-box">ICON 1</div>
+                <div class="icon-box">
+                  <img
+                    class="img"
+                    src="./img/bhootstrap.svg"
+                    alt="bhootstrap"
+                  />
+                  <span>Bootstrap</span>
+                </div>
+                <div class="icon-box">
+                  <img class="img" src="./img/telwind.svg" alt="telwind" />
+                  <span>Telwind</span>
+                </div>
+                <div class="icon-box">
+                  <img class="img" src="./img/react.svg" alt="react" />
+                  <span>React</span>
+                </div>
+                <div class="icon-box">
+                  <img class="img" src="./img/angular.svg" alt="angular" />
+                  <span>Angular</span>
+                </div>
+                <div class="icon-box">
+                  <img
+                    class="img"
+                    src="./img/material_ui.svg"
+                    alt="bhootstrap"
+                  />
+                  <span>Material Ui</span>
+                </div>
+                <div class="icon-box">
+                  <img class="img" src="./img/next.svg" alt="next" />
+                  <span>Next js</span>
+                </div>
               </div>
               <div class="backend-list" style="display: none">
-                <div class="icon-box">ICON 1</div>
-                <div class="icon-box">ICON 1</div>
-                <div class="icon-box">ICON 1</div>
-                <div class="icon-box">ICON 1</div>
-                <div class="icon-box">ICON 1</div>
-                <div class="icon-box">ICON 1</div>
+                <div class="icon-box">
+                  <img class="img" src="./img/nodejs.svg" alt="nodejs" />
+                  <span>Node js</span>
+                </div>
+                <div class="icon-box">
+                  <img class="img" src="./img/laravel.svg" alt="laravel" />
+                  <span>Laravel</span>
+                </div>
+                <div class="icon-box">
+                  <img
+                    class="img"
+                    src="./img/codeignite.svg"
+                    alt="bhootstrap"
+                  />
+                  <span>Codeigniter</span>
+                </div>
+                <div class="icon-box">
+                  <img class="img" src="./img/java.svg" alt="java" />
+                  <span>Java</span>
+                </div>
+                <div class="icon-box">
+                  <img class="img" src="./img/php.svg" alt="bhootstrap" />
+                  <span>PHP</span>
+                </div>
+                <div class="icon-box">
+                  <img class="img" src="./img/python.svg" alt="python" />
+                  <span>Python</span>
+                </div>
               </div>
               <div class="datascience-list" style="display: none">
-                <div class="icon-box">ICON 2</div>
-                <div class="icon-box">ICON 1</div>
-                <div class="icon-box">ICON 1</div>
-                <div class="icon-box">ICON 1</div>
-                <div class="icon-box">ICON 1</div>
-                <div class="icon-box">ICON 1</div>
+                <div class="icon-box">
+                  <img class="img" src="./img/R.svg" alt="bhootstrap" />
+                  <span>R</span>
+                </div>
+                <div class="icon-box">
+                  <img class="img" src="./img/python.svg" alt="bhootstrap" />
+                  <span>Python</span>
+                </div>
               </div>
               <div class="linux-list" style="display: none">
-                <div class="icon-box">ICON 3</div>
-                <div class="icon-box">ICON 1</div>
-                <div class="icon-box">ICON 1</div>
-                <div class="icon-box">ICON 1</div>
-                <div class="icon-box">ICON 1</div>
-                <div class="icon-box">ICON 1</div>
+                <div class="icon-box">
+                  <img
+                    class="img"
+                    src="./img/bhootstrap.svg"
+                    alt="bhootstrap"
+                  />
+                  <span>Bootstrap</span>
+                </div>
+                <div class="icon-box">
+                  <img
+                    class="img"
+                    src="./img/bhootstrap.svg"
+                    alt="bhootstrap"
+                  />
+                  <span>Bootstrap</span>
+                </div>
+                <div class="icon-box">
+                  <img
+                    class="img"
+                    src="./img/bhootstrap.svg"
+                    alt="bhootstrap"
+                  />
+                  <span>Bootstrap</span>
+                </div>
+                <div class="icon-box">
+                  <img
+                    class="img"
+                    src="./img/bhootstrap.svg"
+                    alt="bhootstrap"
+                  />
+                  <span>Bootstrap</span>
+                </div>
               </div>
               <div class="ui-ux" style="display: none">
-                <div class="icon-box">ICON 4</div>
-                <div class="icon-box">ICON 1</div>
-                <div class="icon-box">ICON 1</div>
-                <div class="icon-box">ICON 1</div>
-                <div class="icon-box">ICON 1</div>
-                <div class="icon-box">ICON 1</div>
+                <div class="icon-box">
+                  <img
+                    class="img"
+                    src="./img/bhootstrap.svg"
+                    alt="bhootstrap"
+                  />
+                  <span>Bootstrap</span>
+                </div>
+                <div class="icon-box">
+                  <img
+                    class="img"
+                    src="./img/bhootstrap.svg"
+                    alt="bhootstrap"
+                  />
+                  <span>Bootstrap</span>
+                </div>
+                <div class="icon-box">
+                  <img
+                    class="img"
+                    src="./img/bhootstrap.svg"
+                    alt="bhootstrap"
+                  />
+                  <span>Bootstrap</span>
+                </div>
               </div>
             </div>
           </div>
